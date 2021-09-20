@@ -10,7 +10,6 @@ INNER JOIN Customers ON Customers.CustomerID=Orders.CustomerID
 WHERE Country='Germany'
 GROUP BY ProductID
 ORDER BY SumQuantity desc;
-
 -- According to this criteria, the product ordered the most was productID 40 with the quantity of 160 sold.
 
 -- The product ordered the most based on the number of (different) customers
@@ -21,5 +20,4 @@ INNER JOIN Customers ON Customers.CustomerID=Orders.CustomerID
 WHERE Country='Germany'
 GROUP BY ProductID
 ORDER BY SumCustomers desc; 
-
 -- According to this criteria, the product ordered the most was productID 31 ordered by 5 customers.
