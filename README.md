@@ -33,7 +33,7 @@ The problem of AOV being $3145.13 looks like coming from two reasons, both with 
 
   2. There are 46 entries with abnormally high order_amount. Although these entries don't have high number of items/order like the first case, the order_mount is very high due to the single item price of $$25,725. To isolate these entries, *is_rare* flag has been defined with "per_item_amount>1000", where *per_item_amount* is order_amount/total_items. The name 'rare' is based on the asumption that these sneakers are rare or vintage, hence the high price. Although these entries all come from shop_id of 78, the user_id are all different (wtih the exception of user_id 855 who made two transactions) with diffrent types of payment_method, they all look legit.
 <details>
-  <summary>Click to expand the table.</summary>
+  <summary>Click to expand/collapse the table.</summary>
   
 ```
       order_id  shop_id  user_id  order_amount  total_items payment_method           created_at  is_biz_like  per_item_amount  is_rare
