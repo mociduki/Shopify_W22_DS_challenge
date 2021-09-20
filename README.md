@@ -2,7 +2,7 @@
 
 [Link to the problem](https://docs.google.com/document/d/13VCtoyto9X1PZ74nPI4ZEDdb8hF8LAlcmLH1ZTHxKxE/edit#)
 
-### Q1-a) Think about what could be going wrong with our calculation. Think about a better way to evaluate this data.
+## Q1-a) Think about what could be going wrong with our calculation. Think about a better way to evaluate this data.
 The problem of AOV being $3145.13 looks like coming from two reasons, both with very high order_amount. These two reasons are listed below:
 
    1. There are 17 entries with 2000 items/order, resulting in abnormally high order_amount of $70,400/order. To isolate these entries, a flag called *is_biz_like* has been created with this condition "total_items>10". The table below is the result of the selection "is_biz_like==True". The name of this flag was based on the assumption that high number of items in one order was for the buisiness (resale) purpose. However, given the frequency of the order and the same shop_id and user_id repeated at 4:00 every time, they could be fraudulent activities. If they were real data seen by me, I would initiate an investigation to confirm they are the legit activities.
@@ -31,7 +31,7 @@ The problem of AOV being $3145.13 looks like coming from two reasons, both with 
 ```
 </details>
 
-  2. There are 46 entries with abnormally high order_amount. Although these entries don't have high number of items/order like the first case, the order_mount is very high due to the single item price of $$25,725. To isolate these entries, *is_rare* flag has been defined with "per_item_amount>1000", where *per_item_amount* is order_amount/total_items. Although these entries all come from shop_id of 78, the user_id are all different (wtih the exception of user_id 855 who made two transactions) with diffrent types of payment_method, they all look legit.
+  2. There are 46 entries with abnormally high order_amount. Although these entries don't have high number of items/order like the first case, the order_mount is very high due to the single item price of $$25,725. To isolate these entries, *is_rare* flag has been defined with "per_item_amount>1000", where *per_item_amount* is order_amount/total_items. The name 'rare' is based on the asumption that these sneakers are rare or vintage, hence the high price. Although these entries all come from shop_id of 78, the user_id are all different (wtih the exception of user_id 855 who made two transactions) with diffrent types of payment_method, they all look legit.
 <details>
   <summary>Click to expand the table.</summary>
   
@@ -86,27 +86,34 @@ The problem of AOV being $3145.13 looks like coming from two reasons, both with 
 ```
 </details>
 
-After excluding these abonormally high order_amount entries, the distribution of order amount looks like below. The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
+After excluding these entries with abonormally high order_amount, the distribution of order amount looks like below. <br>
+<img src="./plots/order_amount.png" alt="order_amount" width="400"/> <br>
+The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
 
-
-### Q1-b) What metric would you report for this dataset?
+## Q1-b) What metric would you report for this dataset?
    1. To isolate the second item in a), the per_item_amount was defined as "order_amount/total_items".
    1. total_items / order
-   1. Number of orders / customer
-   1. Total amount / customer
+   1. Number of orders / user
+   1. Total amount / user
 
 The following analysis was carried out after excluding entries explained in a).
 
-### Q2-c) What is its value?
-   1. **per_item_amount** <br>
+## Q2-c) What is its value?
+   1. **per_item_amount** (defined as order_amount/total_items) <br>
+      <img src="./plots/per_item_amount.png" alt="per_item_amount" width="400"/> <br>
       mean = 152.26, std = 31.26 <br>
       Looks OK.
    1. **total_items / order:** <br>
+      <img src="./plots/total_items.png" alt="total_items" width="400"/> <br>
       mean = 1.995, std = 0.983 <br>
       Looks OK.
-   1. **Number of orders / customer** <br>
+   1. **Number of orders / user** <br>
+      <img src="./plots/orders_per_user.png" alt="orders_per_user" width="400"/> <br>
       mean = 16.46, std = 3.985 <br>
-      The number of orders per customer within a month averages 16-17 seems too high.
-   1. **Total amount / customer** <br>
+      The number of orders per user within a month averages 16-17. Tis seems too high.
+   1. **Total amount / user** <br>
+      <img src="./plots/total_amount_per_user.png" alt="total_amount_per_user" width="400"/> <br>
       mean = 4979.47, std = 1369.72 <br>
-      The total amount spent by customers averages nearly $5,000, with the minimum of about $2,000. These orders may be all made by resellers, or fraudulent.
+      Not only the number of orders, the total amount spent per user also averages very high, nearly $5,000. Even the user with the minimum total spent > $2,000. These orders may be all made by resellers, or fraudulent. From this quantity and also the one above, this dataset seems to be highly biased with very high number of orders and the total amount spent in a month.
+
+To further follow up, I would study the frequency of the order next but more data is needed to further isolate the business like transactions and potentially fraudulent ones.
