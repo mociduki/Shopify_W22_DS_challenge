@@ -5,7 +5,7 @@
 ### Q1-a) Think about what could be going wrong with our calculation. Think about a better way to evaluate this data.
 The problem of AOV being $3145.13 looks like coming from two reasons, both with very high order_amount. These two reasons are listed below:
 
-   1. There are 17 entries with 2000 items/order, resulting in abnormally high order_amount of $70,400/order. To isolate these entries, a flag called *is_biz_like* has been created with this condition "total_items>10". The table below is the result of the selection "is_biz_like==True". The name of this flag was based on the assumption that high number of items in one order was for the buisiness (resale) purpose. However, given the frequency of the order and the same shop_id and user_id repeated, they could be fraud activities. If they were real data seen by me, I would initiate an investigation to confirm they are the legit activities.
+   1. There are 17 entries with 2000 items/order, resulting in abnormally high order_amount of $70,400/order. To isolate these entries, a flag called *is_biz_like* has been created with this condition "total_items>10". The table below is the result of the selection "is_biz_like==True". The name of this flag was based on the assumption that high number of items in one order was for the buisiness (resale) purpose. However, given the frequency of the order and the same shop_id and user_id repeated at 4:00 every time, they could be fraudulent activities. If they were real data seen by me, I would initiate an investigation to confirm they are the legit activities.
 <details>
   <summary>Click to expand/collapse the table.</summary>
 
@@ -86,17 +86,27 @@ The problem of AOV being $3145.13 looks like coming from two reasons, both with 
 ```
 </details>
 
-After excluding these abonormally high order_amount entries, the AOV calculated is: 302.58 (with std = 160.80).
+After excluding these abonormally high order_amount entries, the distribution of order amount looks like below. The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
+
 
 ### Q1-b) What metric would you report for this dataset?
    1. To isolate the second item in a), the per_item_amount was defined as "order_amount/total_items".
-   2. Number of orders/customer
-   3. total_items/order
+   1. total_items / order
+   1. Number of orders / customer
+   1. Total amount / customer
+
+The following analysis was carried out after excluding entries explained in a).
 
 ### Q2-c) What is its value?
-   1. **per_item_amount**
-      mean = 152.26, std = 31.26
-   2. **Number of orders/customer**
-      mean = 16.46, std = 3.985
-   3. total_items/order
-      mean = 1.995, std = 0.983
+   1. **per_item_amount** <br>
+      mean = 152.26, std = 31.26 <br>
+      Looks OK.
+   1. **total_items / order:** <br>
+      mean = 1.995, std = 0.983 <br>
+      Looks OK.
+   1. **Number of orders / customer** <br>
+      mean = 16.46, std = 3.985 <br>
+      The number of orders per customer within a month averages 16-17 seems too high.
+   1. **Total amount / customer** <br>
+      mean = 4979.47, std = 1369.72 <br>
+      The total amount spent by customers averages nearly $5,000, with the minimum of about $2,000. These orders may be all made by resellers, or fraudulent.
