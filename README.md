@@ -96,24 +96,23 @@ The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
    1. Number of orders / user
    1. Total amount / user
 
-The following analysis was carried out after excluding entries explained in a).
-
 ## Q2-c) What is its value?
-   1. **per_item_amount** (defined as order_amount/total_items) <br>
+   The following analysis was carried out after excluding entries explained in a), assuing that the term 'user' corresponds to customer, not a shop employee.
+   1. **per_item_amount** (defined as order_amount/total_items), plotted for all shops (99 entries) <br>
       <img src="./plots/per_item_amount.png" alt="per_item_amount" width="400"/> <br>
       mean = 152.26, std = 31.26 <br>
       Looks OK.
-   1. **total_items / order:** <br>
+   1. **total_items / order:**, plotted for all orders (4937 entries)<br>
       <img src="./plots/total_items.png" alt="total_items" width="400"/> <br>
       mean = 1.995, std = 0.983 <br>
       Looks OK.
-   1. **Number of orders / user** <br>
+   1. **Number of orders / user**, plotted for all users (300 entries) <br>
       <img src="./plots/orders_per_user.png" alt="orders_per_user" width="400"/> <br>
       mean = 16.46, std = 3.985 <br>
       The number of orders per user within a month averages 16-17. Tis seems too high.
-   1. **Total amount / user** <br>
+   1. **Total amount / user**, plotted for all users (300 entries) <br>
       <img src="./plots/total_amount_per_user.png" alt="total_amount_per_user" width="400"/> <br>
       mean = 4979.47, std = 1369.72 <br>
       Not only the number of orders, the total amount spent per user also averages very high, nearly $5,000. Even the user with the minimum total spent > $2,000. These orders may be all made by resellers, or fraudulent. From this quantity and also the one above, this dataset seems to be highly biased with very high number of orders and the total amount spent in a month.
 
-To further follow up, I would study the frequency of the order next but more data is needed to further isolate the business like transactions and potentially fraudulent ones.
+To further follow up, I would study the frequency of the order next but more data would help further study this dataset.
