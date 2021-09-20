@@ -86,9 +86,17 @@ The problem of AOV being $3145.13 looks like coming from two reasons, both with 
 ```
 </details>
 
+After excluding these abonormally high order_amount entries, the AOV calculated is: 302.58 (with std = 160.80).
+
 ### Q1-b) What metric would you report for this dataset?
-To isolate the second item in a), the per_item_amount was defined as "order_amount/total_items".
+   1. To isolate the second item in a), the per_item_amount was defined as "order_amount/total_items".
+   2. Number of orders/customer
+   3. total_items/order
 
-Q2-c) What is its value?
-
-After excluding these abonormally high order_amount entries, the AOV calculated is: 302.58.
+### Q2-c) What is its value?
+   1. **per_item_amount**
+      mean = 152.26, std = 31.26
+   2. **Number of orders/customer**
+      mean = 16.46, std = 3.985
+   3. total_items/order
+      mean = 1.995, std = 0.983
