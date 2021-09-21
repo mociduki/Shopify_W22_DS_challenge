@@ -96,6 +96,7 @@ The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
    1. total_items / order: number of total items per order.
    1. Number of orders per user.
    1. Total amount per user. Total amount spent by user.
+These numbers above correspond to the *analysis_type* defined in Q1_analysis.py, which can be given as an argument.
 
 ## Q2-c) What is its value?
    The following analysis was carried out after excluding entries explained in a), assuing that the term 'user' corresponds to customer, not a shop employee.
