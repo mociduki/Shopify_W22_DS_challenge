@@ -92,9 +92,10 @@ The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
 
 ## Q1-b) What metric would you report for this dataset?
    1. To isolate the second item in a), the per_item_amount was defined as "order_amount/total_items".
-   1. total_items / order
-   1. Number of orders / user
-   1. Total amount / user
+   1. order_amount for different payment methods, assuming that there may be different patterns or tendency for cash/debit/credit.
+   1. total_items / order: number of total items per order.
+   1. Number of orders per user.
+   1. Total amount per user. Total amount spent by user.
 
 ## Q2-c) What is its value?
    The following analysis was carried out after excluding entries explained in a), assuing that the term 'user' corresponds to customer, not a shop employee.
@@ -102,6 +103,10 @@ The AOV calculated is: 302.58 (with std = 160.80), which looks OK.
       <img src="./plots/per_item_amount.png" alt="per_item_amount" width="400"/> <br>
       mean = 152.26, std = 31.26 <br>
       Looks OK.
+   1. **order_amount for different payment methods:**, plotted for all orders (4937 entries)<br>
+      <img src="./plots/order_amount_per_payment.png" alt="order_amount_per_payment" width="400"/> <br>
+      mean values for cash, debit and credit card were 297.97, 308.18, and 301.46, respectively. <br>
+      Similar distributions for all of them.
    1. **total_items / order:**, plotted for all orders (4937 entries)<br>
       <img src="./plots/total_items.png" alt="total_items" width="400"/> <br>
       mean = 1.995, std = 0.983 <br>
