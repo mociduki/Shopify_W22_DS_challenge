@@ -122,7 +122,7 @@ These numbers above correspond to the *analysis_type* defined in Q1_analysis.py,
       mean = 4979.47, std = 1369.72 <br>
       Not only the number of orders, the total amount spent per user also averages very high, nearly $5,000. Even the user with the minimum total spent > $2,000. These orders may be all made by resellers, or fraudulent. From this quantity and also the one above, this dataset seems to be highly biased with very high number of orders and the total amount spent in a month.
 
-To further follow up, I would study the frequency of the order next but more data would help further study this dataset.
+<!--- To further follow up, I would study the frequency of the order next but more data would help further study this dataset. --->
 
 ## Q2)
 Please find my answers in the seprarate folder Q2 in this repository.
